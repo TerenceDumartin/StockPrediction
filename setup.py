@@ -1,5 +1,6 @@
 from setuptools import find_packages
 from setuptools import setup
+from fbprophet.models import StanBackendEnum
 
 with open('requirements.txt') as f:
     content = f.readlines()
