@@ -28,7 +28,6 @@ joblib
 memoized-property
 termcolor
 
-pystan
 streamlit
 fbprophet
 yfinance
