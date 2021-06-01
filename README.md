@@ -1,3 +1,5 @@
+Link -> [Stock Prediction](http://tradingprediction.herokuapp.com/)
+
 # V0 - Stock Prediction
 
 [Stock Prediction](http://tradingprediction.herokuapp.com/) allow you to make prediction based on whatever stockmarket you want.<br/>
