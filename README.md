@@ -1,48 +1,22 @@
-# Data analysis
-- Document here the project: StockPrediction
-- Description: Project Description
-- Data Source:
-- Type of analysis:
+Link -> [Stock Prediction](http://tradingprediction.herokuapp.com/)
 
-Please document the project the better you can.
+# V0 - Stock Prediction
 
-# Startup the project
+[Stock Prediction](http://tradingprediction.herokuapp.com/) allow you to make prediction based on whatever stockmarket you want.<br/>
+This version is made using:
+- Yahoo Finance API
+- Facebook Prophet
+- Streamlit
 
-The initial setup.
 
-Create virtualenv and install the project:
-```bash
-sudo apt-get install virtualenv python-pip python-dev
-deactivate; virtualenv ~/venv ; source ~/venv/bin/activate ;\
-    pip install pip -U; pip install -r requirements.txt
-```
+# V(n+) - Next Build
+Working on:
+- Display all info on a company
+- News tracker based of a company
+- Sentiment Analysis of every news (Good News / Neutral News / Bad News) -> Allow us to get prepare to Long / Short a stock.
+- Stock Market Pattern Detection
+- Email - SMS alert for reversal market
 
-Unittest test:
-```bash
-make clean install test
-```
-
-Check for StockPrediction in gitlab.com/{group}.
-If your project is not set please add it:
-
-- Create a new project on `gitlab.com/{group}/StockPrediction`
-- Then populate it:
-
-```bash
-##   e.g. if group is "{group}" and project_name is "StockPrediction"
-git remote add origin git@github.com:{group}/StockPrediction.git
-git push -u origin master
-git push -u origin --tags
-```
-
-Functionnal test with a script:
-
-```bash
-cd
-mkdir tmp
-cd tmp
-StockPrediction-run
-```
 
 # Install
 
