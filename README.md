@@ -1,6 +1,6 @@
 # V0 - Stock Prediction
 
-[Stock Prediction](http://tradingprediction.herokuapp.com/) allow you to make prediction based on whatever stockmarket you want.
+[Stock Prediction](http://tradingprediction.herokuapp.com/) allow you to make prediction based on whatever stockmarket you want.<br/>
 This version is made using:
 - Yahoo Finance API
 - Facebook Prophet
