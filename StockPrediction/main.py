@@ -1,86 +1,37 @@
+import app1
+import prediction
+import app3
+import app4
 import streamlit as st
-from datetime import date
-import pandas as pd
+PAGES = {
+    "Homepage": app1,
+    "Prediction": prediction,
+    "Screener": app3,
+    "Trackers": app4,
+}
 
-import yfinance as yf
-from fbprophet import Prophet
-from fbprophet.plot import plot_plotly
-from plotly import graph_objs as go
-import plotly.graph_objects as goj
+st.sidebar.title('DollyFlow')
+st.sidebar.markdown('''
 
-START = "2015-01-01"
-TODAY = date.today().strftime("%Y-%m-%d")
+    ''')
+st.sidebar.write('Everything you need to know to become **lethal** on stock market')
+st.sidebar.markdown('''
 
-st.title("Stock Prediction")
+    ''')
 
-stocks = st.text_input('Ticker symbol', 'AAPL')
+selection = st.sidebar.selectbox("Navigation", ('Homepage', 'Prediction', 'Screener', 'Trackers'))
+page = PAGES[selection]
+page.app()
 
-@st.cache(allow_output_mutation=True)
-def load_data(ticker):
-    data = yf.download(ticker, START, TODAY)
-    data.reset_index(inplace = True)
-    return data
+if selection == 'Prediction':
 
-data_load_state = st.text("Load data...")
-data = load_data(stocks)
-data_load_state.text("Loading data... done!")
-data['Date'] = pd.to_datetime(data['Date']).dt.date
+    st.sidebar.markdown('''
 
-st.subheader('Raw data')
-st.write('*Data Available for the models*', data.shape[0] * data.shape[1])
-st.write(data[::-1])
+        ''')
+    stocks = st.sidebar.text_input('Ticker symbol', 'AAPL')
 
-def plot_chart_raw_data():
-    fig3 = go.Figure(data=[goj.Candlestick(x=data['Date'],
-        open=data['Open'],
-        high=data['High'],
-        low=data['Low'],
-        close=data['Close'])])
-    fig3.update_xaxes(type="category")
-    fig3.update_layout(title_text="Candlestick Chart", height=600)
-    st.plotly_chart(fig3, use_container_width=True)
+    st.sidebar.markdown('''
 
-plot_chart_raw_data()
-
-# def plot_raw_data():
-#     fig = go.Figure()
-#     fig.add_trace(go.Scatter(x=data['Date'], y=data['Open'], name='stock_open'))
-#     fig.add_trace(go.Scatter(x=data['Date'], y=data['Close'], name='stock_close'))
-#     fig.layout.update(title_text="Chart", xaxis_rangeslider_visible=True)
-#     st.plotly_chart(fig)
-
-# plot_raw_data()
-
-st.write('''
-    <style>
-        div.row-widget.stRadio > div{flex-direction:row;}
-        .row-widget.stButton{text-align:center}
-    </style>''', unsafe_allow_html=True)
-n_years = st.radio('Years of predictions', (1, 2, 3, 4))
-period = n_years * 365
-
-if st.button(f"Predict the next {n_years} years"):
-    #Forecasting
-    df_train = data[['Date', 'Close']]
-    df_train = df_train.rename(columns={'Date': 'ds', 'Close': 'y'})
-
-    m = Prophet()
-    m.fit(df_train)
-    future = m.make_future_dataframe(periods=period)
-    forecast = m.predict(future)
-
-    st.subheader('Forecast Data')
-    fig1 = plot_plotly(m, forecast)
-    st.plotly_chart(fig1)
-
-    st.subheader('Forecast Intervales')
-    fig2 = m.plot_components(forecast)
-    st.write(fig2)
-
-
-
-
-
-
-
+        ''')
+    selection_pred = st.sidebar.radio("", ('Overview', 'Prediction', 'Twitter Tracker', 'News Trackers'))
 
