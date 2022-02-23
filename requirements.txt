@@ -31,5 +31,5 @@ termcolor
 pystan
 streamlit
 fbprophet
-yfinance
+yfinance==0.1.70
 plotly
